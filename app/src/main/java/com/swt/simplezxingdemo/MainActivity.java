@@ -53,13 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void startCaptureActivityForResult() {
         Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putBoolean(CaptureActivity.KEY_NEED_BEEP, CaptureActivity.VALUE_BEEP);
-//        bundle.putBoolean(CaptureActivity.KEY_NEED_VIBRATION, CaptureActivity.VALUE_VIBRATION);
-//        bundle.putBoolean(CaptureActivity.KEY_NEED_EXPOSURE, CaptureActivity.VALUE_NO_EXPOSURE);
-//        bundle.putByte(CaptureActivity.KEY_FLASHLIGHT_MODE, CaptureActivity.VALUE_FLASHLIGHT_OFF);
-//        bundle.putByte(CaptureActivity.KEY_ORIENTATION_MODE, CaptureActivity.VALUE_ORIENTATION_AUTO);
-//        intent.putExtra(CaptureActivity.EXTRA_SETTING_BUNDLE, bundle);
         startActivityForResult(intent, CaptureActivity.REQ_CODE);
     }
 
