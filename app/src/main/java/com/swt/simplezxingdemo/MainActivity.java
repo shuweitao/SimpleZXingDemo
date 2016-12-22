@@ -42,15 +42,20 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Android 6.0权限判断
                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQ_CODE_PERMISSION);
                 } else {
+                    //跳转至扫描页面
                     startCaptureActivityForResult();
                 }
             }
         });
     }
 
+    /**
+     * 跳转至扫描页面
+     */
     private void startCaptureActivityForResult() {
         Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
         startActivityForResult(intent, CaptureActivity.REQ_CODE);
@@ -62,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQ_CODE_PERMISSION: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //权限开启成功 跳转至扫描二维码页面
                     startCaptureActivityForResult();
                 } else {
+                    //权限开启失败 显示提示信息
                     showMissingPermissionDialog();
                 }
             }
@@ -93,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 显示提示信息
-     *
-     * @since 2.5.0
      */
     private void showMissingPermissionDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        // 跳转至当前应用的权限设置页面
                         startAppSettings();
                     }
                 });
@@ -125,8 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 启动应用的设置
-     *
-     * @since 2.5.0
      */
     private void startAppSettings() {
         Intent intent = new Intent(
